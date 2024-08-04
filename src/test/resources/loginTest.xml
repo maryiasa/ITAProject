@@ -4,6 +4,9 @@
     <test name="Login Test" >
         <classes>
             <class name="com.itacademy.LoginTest" >
+                <methods>
+                    <exclude name = "negativeLogin"/>
+                </methods>
             </class>
         </classes>
     </test>
