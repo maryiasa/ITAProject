@@ -1,7 +1,7 @@
 package com.itacademy;
 
+import com.itacademy.utils.DriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -13,12 +13,10 @@ public class BaseTest {
 
     @BeforeMethod
     public  void setUp() {
-        System.setProperty("webdriver.chrome.driver", "/Users/maryiasahanovich/Drivers/chromedriver");
-
-        driver = new ChromeDriver();
+        driver = DriverFactory.createDriver("chrome");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3)); //will wait for element
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10)); //will wait for page to load
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30)); //will wait for page to load
     }
 
     @AfterMethod

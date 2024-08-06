@@ -1,29 +1,20 @@
 package com.itacademy;
 
+import com.itacademy.utils.JSExecutorUtils;
+import com.itacademy.utils.Waiters;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.Objects;
 
-public class CartTest {
+public class CartTest extends BaseTest {
 
     private static final Logger LOGGER = LogManager.getLogger(CartTest.class);
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public  void setUp() {
-        System.setProperty("webdriver.chrome.driver", "/Users/maryiasahanovich/Drivers/chromedriver");
-
-        driver = new ChromeDriver();
-    }
 
     @Test
     public void addProductToCart() {
@@ -61,8 +52,16 @@ public class CartTest {
         } else LOGGER.error("Subtotal should be = $ 0.00. Actual value is " + subTotalAfterRemoveValue);
     }
 
-    @AfterMethod
-    public void closeSession() {
-        driver.quit();
+    @Test
+    public void checkProduct() {
+        driver.get("https://react-shopping-cart-67954.firebaseapp.com/");
+        Waiters.wait(3000);
+        List<WebElement> addToCartBtn = driver.findElements(By.xpath("//*[text()='Add to cart']"));
+        for (WebElement webElement: addToCartBtn)
+        {
+            JSExecutorUtils.click(driver, webElement);
+        }
+
     }
+
 }

@@ -1,4 +1,4 @@
-package com.itacademy;
+package com.itacademy.utils;
 
 public class Waiters {
 
