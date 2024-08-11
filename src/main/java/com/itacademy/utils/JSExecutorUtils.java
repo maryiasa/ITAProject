@@ -11,4 +11,10 @@ public class JSExecutorUtils {
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", webElement);
     }
+
+    public static String getTextByID(WebDriver driver, String name ) {
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        return (String) executor.executeScript("return document.getElementById(\"" + name + "\").value");
+    }
+
 }

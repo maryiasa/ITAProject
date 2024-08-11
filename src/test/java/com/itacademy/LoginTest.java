@@ -1,5 +1,6 @@
 package com.itacademy;
 
+import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -10,9 +11,11 @@ import org.testng.annotations.Test;
 
 import java.util.Objects;
 
+@Log4j2
 public class LoginTest extends  BaseTest {
 
-    private static final Logger LOGGER = LogManager.getLogger(LoginTest.class);
+
+    private static final Logger log = LogManager.getLogger(LoginTest.class);
 
     @Test
     public void  positiveLogin() {
@@ -29,8 +32,8 @@ public class LoginTest extends  BaseTest {
         String checkboxLabel = loveIceCreamsLabel.getText();
 
         if (!Objects.equals(checkboxLabel, "Check me out if you Love IceCreams!")) {
-            LOGGER.error("Expected text:  Check me out if you Love IceCreams!. Actual text: " + checkboxLabel);
-        } else LOGGER.info(checkboxLabel);
+            log.error("Expected text:  Check me out if you Love IceCreams!. Actual text: " + checkboxLabel);
+        } else log.info(checkboxLabel);
 
         loveIceCreamsCheckbox.click();
         Assert.assertTrue(loveIceCreamsCheckbox.isSelected());
@@ -47,8 +50,8 @@ public class LoginTest extends  BaseTest {
         String successAlertTxt = successAlert.getText();
 
         if (!Objects.equals(successAlertTxt, "Success! The Form has been submitted successfully!.")) {
-            LOGGER.error("Expected text:  Success! The Form has been submitted successfully!.. Actual text: " + successAlertTxt);
-        } else LOGGER.info(successAlertTxt);
+            log.error("Expected text:  Success! The Form has been submitted successfully!.. Actual text: " + successAlertTxt);
+        } else log.info(successAlertTxt);
 
     }
 
@@ -64,16 +67,13 @@ public class LoginTest extends  BaseTest {
         Assert.assertTrue(nameAlert.isDisplayed());
         WebElement emailInput = driver.findElement(By.xpath("//div[2]/input"));
         emailInput.click();
-        //emailInput.sendKeys("dskfljvdflkb");
-        //nameInput.click();
-        //emailInput.clear();
         WebElement pwdInput = driver.findElement(By.id("exampleInputPassword1"));
         pwdInput.click();
         WebElement emailAlert = driver.findElement(By.xpath("//*[@class = 'alert alert-danger'][text() = 'Email is required']"));
         Assert.assertTrue(emailAlert.isDisplayed());
 
         WebElement submitBtn = driver.findElement(By.xpath("//div/form/input"));
-        LOGGER.error("One or more required fields are empty.");
+        log.error("One or more required fields are empty.");
         Assert.assertFalse(submitBtn.isEnabled());
     }
 

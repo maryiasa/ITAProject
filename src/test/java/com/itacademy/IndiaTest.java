@@ -1,6 +1,7 @@
 package com.itacademy;
 
 import com.itacademy.utils.Waiters;
+import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -13,9 +14,11 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
+@Log4j2
 public class IndiaTest extends BaseTest{
 
-    private static final Logger LOGGER = LogManager.getLogger(IndiaTest.class);
+
+    private static final Logger log = LogManager.getLogger(IndiaTest.class);
 
     @Test
     public void  login() throws InterruptedException {
@@ -42,7 +45,7 @@ public class IndiaTest extends BaseTest{
         selectElement.selectByIndex(0);
         selectElement.selectByVisibleText("Male");
         selectElement.selectByVisibleText("Female");
-        LOGGER.info(selectElement.getFirstSelectedOption().getText());
+        log.info(selectElement.getFirstSelectedOption().getText());
         Assert.assertEquals(selectElement.getFirstSelectedOption().getText(), "Female");
 
         Waiters.wait(3000);

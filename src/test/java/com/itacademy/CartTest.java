@@ -2,6 +2,7 @@ package com.itacademy;
 
 import com.itacademy.utils.JSExecutorUtils;
 import com.itacademy.utils.Waiters;
+import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -12,9 +13,11 @@ import org.testng.annotations.Test;
 import java.util.List;
 import java.util.Objects;
 
+@Log4j2
 public class CartTest extends BaseTest {
 
-    private static final Logger LOGGER = LogManager.getLogger(CartTest.class);
+
+    private static final Logger log = LogManager.getLogger(CartTest.class);
 
     @Test
     public void addProductToCart() {
@@ -31,8 +34,8 @@ public class CartTest extends BaseTest {
         String firstProdictNameCart = firstProductCart.getText();
 
         if (Objects.equals(firstProductName, firstProdictNameCart)) {
-            LOGGER.info("firstProductName = " + firstProductName + ". firstProductCart = " + firstProdictNameCart);
-        } else LOGGER.error("Name of the Product in the cart doesn't match Name of added item. firstProductName = " + firstProductName + ". firstProductCart = " + firstProdictNameCart);
+            log.info("firstProductName = " + firstProductName + ". firstProductCart = " + firstProdictNameCart);
+        } else log.error("Name of the Product in the cart doesn't match Name of added item. firstProductName = " + firstProductName + ". firstProductCart = " + firstProdictNameCart);
     }
 
     @Test
@@ -48,8 +51,8 @@ public class CartTest extends BaseTest {
         String subTotalAfterRemoveValue = subTotal.getText();
 
         if (subTotalAfterRemoveValue.equals("$ 0.01")) {
-            LOGGER.info("Item is removed. Subtotal = " + subTotalAfterRemoveValue);
-        } else LOGGER.error("Subtotal should be = $ 0.00. Actual value is " + subTotalAfterRemoveValue);
+            log.info("Item is removed. Subtotal = " + subTotalAfterRemoveValue);
+        } else log.error("Subtotal should be = $ 0.00. Actual value is " + subTotalAfterRemoveValue);
     }
 
     @Test
