@@ -16,8 +16,8 @@ public class DriverManager {
 
     }
 
-    public static WebDriver getDriver() {
-        if (threadLocal.get().equals(null)) {
+    public synchronized static WebDriver getDriver() {
+        if (threadLocal.get() == (null)) {
             driver = DriverFactory.createDriver(ConfigurationReader.getProperty(PropertiesValue.BROWSER.BROWSER));
             EventFiringDecorator<WebDriver> decorator = new EventFiringDecorator(new SeleniumListener());
             driver = decorator.decorate(driver);

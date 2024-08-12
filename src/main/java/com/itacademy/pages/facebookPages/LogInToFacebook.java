@@ -1,12 +1,12 @@
 package com.itacademy.pages.facebookPages;
 
+import com.itacademy.utils.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LogInToFacebook {
-    private WebDriver driver;
 
     @FindBy(className = "_9axz")
     private  WebElement pageName;
@@ -34,9 +34,8 @@ public class LogInToFacebook {
 
     String errorTxt = "The email address or mobile number you entered isn't connected to an account. Find your account and log in.";
 
-    public LogInToFacebook(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public LogInToFacebook() {
+        PageFactory.initElements(DriverManager.getDriver(), this);
     }
 
     public String getPageName() {
@@ -45,12 +44,12 @@ public class LogInToFacebook {
 
     public LogInToFacebook clickLogInBtn() {
         logInBtn.click();
-        return new LogInToFacebook(driver);
+        return new LogInToFacebook();
     }
 
     public FindYourAccount clickForgottenPwdBtn() {
         forgottenPwdBtn.click();
-        return new FindYourAccount(driver);
+        return new FindYourAccount();
     }
 
     public String getErrorText() {

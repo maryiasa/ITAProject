@@ -41,7 +41,7 @@ public class HomePage {
     }
 
     public void open() {
-        driver.get("https://www.facebook.com/");
+        DriverManager.getDriver().get("https://www.facebook.com/");
     }
 
     String facebookSloganTxt = "Facebook helps you connect and share with the people in your life.";
@@ -52,17 +52,17 @@ public class HomePage {
 
     public LogInToFacebook clickLogInBtn() {
         logInBtn.click();
-        return new LogInToFacebook(driver);
+        return new LogInToFacebook();
     }
 
     public FindYourAccount clickForgottenPwdBtn() {
         forgottenPwdBtn.click();
-        return new FindYourAccount(driver);
+        return new FindYourAccount();
     }
 
     public SignUp clickCreateNewAccBtn() {
         createNewAccBtn.click();
-        return new SignUp(driver);
+        return new SignUp();
     }
 
 
