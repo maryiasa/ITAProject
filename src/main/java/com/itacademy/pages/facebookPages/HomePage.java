@@ -1,13 +1,11 @@
 package com.itacademy.pages.facebookPages;
 
 import com.itacademy.utils.DriverManager;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
-    private WebDriver driver;
 
     @FindBy(xpath = "(//*[text() = 'Allow all cookies'])[2]")
     private WebElement allowCookiesBtn;

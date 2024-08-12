@@ -3,9 +3,7 @@ package com.itacademy;
 import com.itacademy.pages.facebookPages.FindYourAccount;
 import com.itacademy.pages.facebookPages.HomePage;
 import com.itacademy.pages.facebookPages.LogInToFacebook;
-import com.itacademy.utils.DriverManager;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

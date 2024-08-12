@@ -14,7 +14,7 @@ public class TestNGListener implements ITestListener {
     @Override
     public void onTestStart(ITestResult result) {
         ITestListener.super.onTestStart(result);
-        log.info("=======================================================\n" +
+        log.info("\n=======================================================\n" +
                 "Test " + result.getMethod().getMethodName() +  ": STARTED\n" +
                 "=======================================================");
     }
@@ -22,7 +22,7 @@ public class TestNGListener implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         ITestListener.super.onTestSuccess(result);
-        log.info("=======================================================\n" +
+        log.info("\n=======================================================\n" +
                 "Test " + result.getMethod().getMethodName() +  ": SUCCEED\n" +
                 "=======================================================");
     }
@@ -30,7 +30,7 @@ public class TestNGListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         ITestListener.super.onTestFailure(result);
-        log.info("=======================================================\n" +
+        log.info("\n=======================================================\n" +
                 "Test " + result.getMethod().getMethodName() +  ": FAILED\n" +
                 "=======================================================");
     }
