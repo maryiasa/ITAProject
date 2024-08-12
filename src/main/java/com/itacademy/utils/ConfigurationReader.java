@@ -25,6 +25,15 @@ public class ConfigurationReader {
             log.error(" ");;
         }
 
+        /*
+        for (Object key : properties.keySet()) {
+            String systemValue = System.getProperty((String) key);
+            if (!StringUtils.isEmpty(systemValue)) {
+                properties.put(key, systemValue);
+            }
+
+         */
+
         return properties.getProperty(property.getKey(), property.getDefaultValue());
     }
 

@@ -10,22 +10,27 @@ import java.time.Duration;
 public class DriverManager {
 
     private static WebDriver driver;
+    private  static ThreadLocal<WebDriver> threadLocal = new ThreadLocal<>();
 
     private DriverManager() {
 
     }
 
     public static WebDriver getDriver() {
-        if (driver.equals(null)) {
+        if (threadLocal.get().equals(null)) {
             driver = DriverFactory.createDriver(ConfigurationReader.getProperty(PropertiesValue.BROWSER.BROWSER));
             EventFiringDecorator<WebDriver> decorator = new EventFiringDecorator(new SeleniumListener());
             driver = decorator.decorate(driver);
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); //will wait for element
             driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60)); //will wait for page to load
-            return driver;
-        } else {
-            return  driver;
+            threadLocal.set(driver);
+            return threadLocal.get();
         }
+        return threadLocal.get();
+    }
+    public static void closeSession(){
+        driver.quit();
+        threadLocal.set(null);
     }
 }

@@ -23,6 +23,6 @@ public class BaseTest {
 
     @AfterMethod
     public void closeSession() {
-        DriverManager.getDriver().quit();
+        DriverManager.closeSession();
     }
 }
