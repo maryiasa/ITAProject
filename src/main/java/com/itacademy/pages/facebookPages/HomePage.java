@@ -17,13 +17,13 @@ public class HomePage {
     @FindBy(id = "pass")
     private WebElement pwdInput;
 
-    @FindBy(css = ".u_0_5_eS")
+    @FindBy(xpath = "//*[@name = 'login']")
     private WebElement logInBtn;
 
-    @FindBy(id = "login_link")
+    @FindBy(xpath = "//*[text() = 'Forgotten password?']")
     private WebElement forgottenPwdBtn;
 
-    @FindBy(id = "u_0_0_xH")
+    @FindBy(xpath = "//*[text() = 'Create new account']")
     private WebElement createNewAccBtn;
 
     @FindBy(xpath = "//*[text() = 'Create a Page']")

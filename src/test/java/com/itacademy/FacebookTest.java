@@ -23,7 +23,6 @@ public class FacebookTest extends BaseTest {
         driver.get("https://www.facebook.com/");
         HomePage homePage = new HomePage(driver);
         homePage.clickCookies();
-        //driver.findElement(By.xpath("(//*[text() = 'Allow all cookies'])[2]")).click();
         String sloganText = homePage.getSlogan();
         String logInBtnText = homePage.getLogInBtn();
         String createNewAccBtnText = homePage.getCreateNewAccBtn();
