@@ -3,6 +3,7 @@ package com.itacademy;
 import com.itacademy.pages.facebookPages.FindYourAccount;
 import com.itacademy.pages.facebookPages.HomePage;
 import com.itacademy.pages.facebookPages.LogInToFacebook;
+import com.itacademy.utils.DriverManager;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -12,16 +13,9 @@ import org.testng.annotations.Test;
 public class FacebookTest extends BaseTest {
 
     @Test
-    public void test1 () {
-        driver.get("https://www.facebook.com/");
-        driver.findElement(By.xpath("(//*[text() = 'Allow all cookies'])[2]")).click();
-    }
-
-
-    @Test
     public void loadHomePageElements() {
-        driver.get("https://www.facebook.com/");
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage();
+        homePage.open();
         homePage.clickCookies();
         String sloganText = homePage.getSlogan();
         String logInBtnText = homePage.getLogInBtn();
@@ -35,8 +29,7 @@ public class FacebookTest extends BaseTest {
 
     @Test
     public void negativeLogin() {
-        driver.get("https://www.facebook.com/");
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage();
         homePage.clickCookies();
         LogInToFacebook logIn = homePage.clickLogInBtn();
         Assert.assertEquals(logIn.getPageName(), "Log in to Facebook");
@@ -45,8 +38,7 @@ public class FacebookTest extends BaseTest {
 
     @Test
     public void forgottenPwd() {
-        driver.get("https://www.facebook.com/");
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage();
         homePage.clickCookies();
         FindYourAccount findYourAccount = homePage.clickForgottenPwdBtn();
         Assert.assertEquals(findYourAccount.getPageName(), "Find Your Account");

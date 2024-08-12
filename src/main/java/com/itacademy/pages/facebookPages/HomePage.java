@@ -1,5 +1,6 @@
 package com.itacademy.pages.facebookPages;
 
+import com.itacademy.utils.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,9 +36,12 @@ public class HomePage {
     @FindBy(className = "_8eso")
     private WebElement slogan;
 
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public HomePage() {
+        PageFactory.initElements(DriverManager.getDriver(), this);
+    }
+
+    public void open() {
+        driver.get("https://www.facebook.com/");
     }
 
     String facebookSloganTxt = "Facebook helps you connect and share with the people in your life.";

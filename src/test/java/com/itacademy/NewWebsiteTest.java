@@ -17,6 +17,8 @@ import java.util.List;
 @Log4j2
 public class NewWebsiteTest extends BaseTest{
 
+    private WebDriver driver;
+
     public static final Logger log =  LogManager.getLogger(NewWebsiteTest.class);
 
     @Test
