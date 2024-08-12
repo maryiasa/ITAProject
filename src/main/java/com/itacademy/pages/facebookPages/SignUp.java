@@ -8,6 +8,6 @@ public class SignUp {
 
     public SignUp(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, SignUp.class);
+        PageFactory.initElements(driver, this);
     }
 }

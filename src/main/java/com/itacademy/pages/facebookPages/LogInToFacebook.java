@@ -20,7 +20,7 @@ public class LogInToFacebook {
     @FindBy(id = "loginbutton")
     private WebElement logInBtn;
 
-    @FindBy(className = "_42ft _4jy0 _82go _4jy6 _517h _51sy")
+    @FindBy(css = "._42ft._4jy0._82go._4jy6._517h._51sy")
     private WebElement logInWithGoogleBtn;
 
     @FindBy(id = "login_link")
@@ -36,7 +36,7 @@ public class LogInToFacebook {
 
     public LogInToFacebook(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, LogInToFacebook.class);
+        PageFactory.initElements(driver, this);
     }
 
     public String getPageName() {

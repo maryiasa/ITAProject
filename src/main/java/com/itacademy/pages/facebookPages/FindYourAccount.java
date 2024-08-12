@@ -22,7 +22,7 @@ public class FindYourAccount {
 
     public FindYourAccount(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, FindYourAccount.class);
+        PageFactory.initElements(driver, this);
     }
 
     public void clickSearchBtn() {

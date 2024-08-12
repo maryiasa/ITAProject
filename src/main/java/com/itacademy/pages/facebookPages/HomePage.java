@@ -17,7 +17,7 @@ public class HomePage {
     @FindBy(id = "pass")
     private WebElement pwdInput;
 
-    @FindBy(id = "loginbutton")
+    @FindBy(css = ".u_0_5_eS")
     private WebElement logInBtn;
 
     @FindBy(id = "login_link")
@@ -29,7 +29,7 @@ public class HomePage {
     @FindBy(xpath = "//*[text() = 'Create a Page']")
     private WebElement createPageForCelebrityOrBusinessBtn;
 
-    @FindBy(className = "fb_logo _8ilh img")
+    @FindBy(css = ".fb_logo._8ilh.img")
     private WebElement logoImg;
 
     @FindBy(className = "_8eso")
@@ -37,7 +37,7 @@ public class HomePage {
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, HomePage.class);
+        PageFactory.initElements(driver, this);
     }
 
     String facebookSloganTxt = "Facebook helps you connect and share with the people in your life.";
