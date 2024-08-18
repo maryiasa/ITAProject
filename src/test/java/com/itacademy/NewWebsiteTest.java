@@ -1,9 +1,6 @@
 package com.itacademy;
 
-import com.itacademy.utils.ActionsUtils;
-import com.itacademy.utils.JSExecutorUtils;
-import com.itacademy.utils.ScreenshotUtils;
-import com.itacademy.utils.Waiters;
+import com.itacademy.utils.*;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,46 +14,56 @@ import java.util.List;
 @Log4j2
 public class NewWebsiteTest extends BaseTest{
 
-    private WebDriver driver;
-
     public static final Logger log =  LogManager.getLogger(NewWebsiteTest.class);
 
     @Test
-    public void frametest() {
-        driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+    public void frameTest() {
+        DriverManager.getDriver().get("https://rahulshettyacademy.com/AutomationPractice/");
         Waiters.wait(3000);
-        List<WebElement> list = driver.findElements(By.xpath("//*[text() = 'All Access plan']"));
-        log.info(list.size());
-        ScreenshotUtils.makeScreenshot(driver, "frame_");
-        driver.switchTo().frame("courses-iframe");
-        log.info(list.size());
-        driver.switchTo().defaultContent();
+        List<WebElement> list = DriverManager.getDriver().findElements(By.xpath("//*[text() = 'All Access plan']"));
+        log.info("List before: " + list.size());
+        ScreenshotUtils.makeScreenshot(DriverManager.getDriver(), "frame_");
+        DriverManager.getDriver().switchTo().frame("courses-iframe");
+        list = DriverManager.getDriver().findElements(By.xpath("//*[text() = 'All Access plan']"));
+        log.info("List after: " + list.size());
+        DriverManager.getDriver().switchTo().defaultContent();
 
     }
 
     @Test
     public void alertTest() {
-        driver.get("https://rahulshettyacademy.com/AutomationPractice/");
-        driver.findElement(By.id("name")).sendKeys("Maria");
-        driver.findElement(By.id("alertbtn")).click();
-        Alert alert = driver.switchTo().alert();
+        DriverManager.getDriver().get("https://rahulshettyacademy.com/AutomationPractice/");
+        DriverManager.getDriver().findElement(By.id("name")).sendKeys("Maria");
+        DriverManager.getDriver().findElement(By.id("alertbtn")).click();
+        Alert alert = DriverManager.getDriver().switchTo().alert();
         log.info(alert.getText());
         alert.accept();
 
     }
 
     @Test
+    public void autocompleteTest() {
+        DriverManager.getDriver().get("https://rahulshettyacademy.com/AutomationPractice/");
+        DriverManager.getDriver().findElement(By.id("autocomplete")).sendKeys("India");
+        Waiters.wait(1000);
+        DriverManager.getDriver().findElement(By.xpath("//div[text() = 'British Indian Ocean Territory' and @class = 'ui-menu-item-wrapper']")).click();
+        Waiters.wait(1000);
+        log.info(DriverManager.getDriver().getPageSource());
+
+    }
+
+    @Test
     public void confirmTest() {
-        driver.get("https://rahulshettyacademy.com/AutomationPractice/");
-        WebElement nameInput = driver.findElement(By.id("name"));
+        DriverManager.getDriver().get("https://rahulshettyacademy.com/AutomationPractice/");
+        WebElement nameInput = DriverManager.getDriver().findElement(By.id("name"));
         log.info(nameInput.getAttribute("placeholder"));
         nameInput.sendKeys("Maria");
-        driver.findElement(By.id("confirmbtn")).click();
-        Alert alert = driver.switchTo().alert();
+        DriverManager.getDriver().findElement(By.id("confirmbtn")).click();
+        Alert alert = DriverManager.getDriver().switchTo().alert();
         log.info(alert.getText());
         alert.accept();
-        driver.findElement(By.id("confirmbtn")).click();
-        Alert alert1 = driver.switchTo().alert();
+        DriverManager.getDriver().findElement(By.id("confirmbtn")).click();
+        Alert alert1 = DriverManager.getDriver().switchTo().alert();
         log.info(alert1.getText());
         alert1.dismiss();
 
@@ -64,68 +71,68 @@ public class NewWebsiteTest extends BaseTest{
 
     @Test
     public void hideTest() {
-        driver.get("https://rahulshettyacademy.com/AutomationPractice/");
-        WebElement showHide = driver.findElement(By.id("displayed-text"));
+        DriverManager.getDriver().get("https://rahulshettyacademy.com/AutomationPractice/");
+        WebElement showHide = DriverManager.getDriver().findElement(By.id("displayed-text"));
         log.info(showHide.getAttribute("placeholder"));
         Assert.assertTrue(showHide.isDisplayed());
-        driver.findElement(By.id("hide-textbox")).click();
+        DriverManager.getDriver().findElement(By.id("hide-textbox")).click();
         Assert.assertFalse(showHide.isDisplayed());
     }
 
     @Test
     public void showTest() {
-        driver.get("https://rahulshettyacademy.com/AutomationPractice/");
-        WebElement showHide = driver.findElement(By.id("displayed-text"));
+        DriverManager.getDriver().get("https://rahulshettyacademy.com/AutomationPractice/");
+        WebElement showHide = DriverManager.getDriver().findElement(By.id("displayed-text"));
         log.info(showHide.getAttribute("placeholder"));
-        driver.findElement(By.id("hide-textbox")).click();
+        DriverManager.getDriver().findElement(By.id("hide-textbox")).click();
         Assert.assertFalse(showHide.isDisplayed());
-        driver.findElement(By.id("show-textbox")).click();
+        DriverManager.getDriver().findElement(By.id("show-textbox")).click();
         Assert.assertTrue(showHide.isDisplayed());
     }
 
     @Test
     public void newTabTest() {
-        driver.get("https://rahulshettyacademy.com/AutomationPractice/");
-        String mainWnd = driver.getWindowHandle();
-        driver.findElement(By.id("opentab")).click();
+        DriverManager.getDriver().get("https://rahulshettyacademy.com/AutomationPractice/");
+        String mainWnd = DriverManager.getDriver().getWindowHandle();
+        DriverManager.getDriver().findElement(By.id("opentab")).click();
         Waiters.wait(3000);
 
-        for (String windowString: driver.getWindowHandles())
+        for (String windowString: DriverManager.getDriver().getWindowHandles())
             if (!windowString.equals(mainWnd))
-                driver.switchTo().window(windowString);
+                DriverManager.getDriver().switchTo().window(windowString);
 
-        Assert.assertTrue(driver.findElement(By.xpath("//*[text() = 'Access all our Courses']")).isDisplayed());
+        Assert.assertTrue(DriverManager.getDriver().findElement(By.xpath("//*[text() = 'Access all our Courses']")).isDisplayed());
 
-        driver.close();
-        driver.switchTo().window(mainWnd);
+        DriverManager.getDriver().close();
+        DriverManager.getDriver().switchTo().window(mainWnd);
     }
 
     @Test
     public void mouseHover() {
-        driver.get("https://rahulshettyacademy.com/AutomationPractice/");
-        ActionsUtils.hoverAndClick(driver, driver.findElement(By.id("mousehover")), driver.findElement(By.xpath("//*[text() = 'Top']")));
-        ActionsUtils.hoverAndClick(driver, driver.findElement(By.id("mousehover")), driver.findElement(By.xpath("//*[text() = 'Reload']")));
-        ActionsUtils.hover(driver, driver.findElement(By.id("mousehover")));
+        DriverManager.getDriver().get("https://rahulshettyacademy.com/AutomationPractice/");
+        ActionsUtils.hoverAndClick(DriverManager.getDriver(), DriverManager.getDriver().findElement(By.id("mousehover")), DriverManager.getDriver().findElement(By.xpath("//*[text() = 'Top']")));
+        ActionsUtils.hoverAndClick(DriverManager.getDriver(), DriverManager.getDriver().findElement(By.id("mousehover")), DriverManager.getDriver().findElement(By.xpath("//*[text() = 'Reload']")));
+        ActionsUtils.hover(DriverManager.getDriver(), DriverManager.getDriver().findElement(By.id("mousehover")));
 
     }
 
     @Test
     public void getTextByJS() {
         String text = "Maria";
-        driver.get("https://rahulshettyacademy.com/AutomationPractice/");
-        driver.findElement(By.id("name")).sendKeys(text);
-        Assert.assertEquals(JSExecutorUtils.getTextByID(driver, "name"), text);
+        DriverManager.getDriver().get("https://rahulshettyacademy.com/AutomationPractice/");
+        DriverManager.getDriver().findElement(By.id("name")).sendKeys(text);
+        Assert.assertEquals(JSExecutorUtils.getTextByID(DriverManager.getDriver(), "name"), text);
     }
 
     @Test
     public void listenerTest() {
         String text = "Maria";
-        driver.get("https://rahulshettyacademy.com/AutomationPractice/");
-        driver.findElement(By.xpath("//*[@value= 'radibutton1']")).click();
-        driver.findElement(By.xpath("//*[@value= 'radibutton2']")).click();
-        driver.findElement(By.xpath("//*[@value= 'radibutton3']")).click();
-        driver.findElement(By.id("name")).sendKeys(text);
-        Assert.assertEquals(JSExecutorUtils.getTextByID(driver, "name"), text);
+        DriverManager.getDriver().get("https://rahulshettyacademy.com/AutomationPractice/");
+        DriverManager.getDriver().findElement(By.xpath("//*[@value= 'radio1']")).click();
+        DriverManager.getDriver().findElement(By.xpath("//*[@value= 'radio2']")).click();
+        DriverManager.getDriver().findElement(By.xpath("//*[@value= 'radio3']")).click();
+        DriverManager.getDriver().findElement(By.id("name")).sendKeys(text);
+        Assert.assertEquals(JSExecutorUtils.getTextByID(DriverManager.getDriver(), "name"), text);
 
 
     }

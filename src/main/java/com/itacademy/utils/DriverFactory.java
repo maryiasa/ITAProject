@@ -1,17 +1,37 @@
 package com.itacademy.utils;
 
+import com.itacademy.enums.PropertiesValue;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class DriverFactory {
     public static WebDriver createDriver(String browserName) {
         if (browserName.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", "/Users/maryiasahanovich/Drivers/chromedriver");
-            return new ChromeDriver();
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.addArguments("--start-maximized");
+            URL url = null;
+            try {
+                url = new URL(ConfigurationReader.getProperty(PropertiesValue.SELENIUM_URL));
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
+            return new RemoteWebDriver(url, chromeOptions);
+
         } else if (browserName.equals("firefox")) {
-            System.setProperty("webdriver.gecko.driver", "/Users/maryiasahanovich/Drivers/geckodriver");
-            return new FirefoxDriver();
+            FirefoxOptions firefoxOptions = new FirefoxOptions();
+            firefoxOptions.addArguments("--start-maximized");
+            URL url = null;
+            try {
+                url = new URL("http://localhost:4444");
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
+            return new RemoteWebDriver(url, firefoxOptions);
         } else {
            return null;
         }
