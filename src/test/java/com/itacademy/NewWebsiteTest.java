@@ -22,7 +22,7 @@ public class NewWebsiteTest extends BaseTest{
         Waiters.wait(3000);
         List<WebElement> list = DriverManager.getDriver().findElements(By.xpath("//*[text() = 'All Access plan']"));
         log.info("List before: " + list.size());
-        ScreenshotUtils.makeScreenshot(DriverManager.getDriver(), "frame_");
+        ScreenshotUtils.makeScreenshot(DriverManager.getDriver(), "NewWebsiteTest/frame_");
         DriverManager.getDriver().switchTo().frame("courses-iframe");
         list = DriverManager.getDriver().findElements(By.xpath("//*[text() = 'All Access plan']"));
         log.info("List after: " + list.size());

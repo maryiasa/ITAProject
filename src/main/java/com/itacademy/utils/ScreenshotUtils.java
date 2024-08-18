@@ -35,7 +35,7 @@ public class ScreenshotUtils {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         String currentDateStr = simpleDateFormat.format(date);
-        File file1 = new  File(filename + currentDateStr + ".png");
+        File file1 = new  File("screenshots/" + filename + currentDateStr + ".png");
         try {
             FileUtils.copyFile(file, file1);
         } catch (IOException e) {
