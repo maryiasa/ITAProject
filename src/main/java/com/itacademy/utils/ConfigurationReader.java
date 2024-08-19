@@ -2,6 +2,7 @@ package com.itacademy.utils;
 
 import com.itacademy.enums.PropertiesValue;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,14 +26,14 @@ public class ConfigurationReader {
             log.error(" ");;
         }
 
-        /*
+
         for (Object key : properties.keySet()) {
             String systemValue = System.getProperty((String) key);
             if (!StringUtils.isEmpty(systemValue)) {
                 properties.put(key, systemValue);
             }
+        }
 
-         */
 
         return properties.getProperty(property.getKey(), property.getDefaultValue());
     }
