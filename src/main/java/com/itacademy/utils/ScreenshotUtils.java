@@ -1,5 +1,6 @@
 package com.itacademy.utils;
 
+import io.qameta.allure.Attachment;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -17,29 +18,9 @@ import java.util.Date;
 public class ScreenshotUtils {
     private static final Logger log = LogManager.getLogger(ScreenshotUtils.class);
 
-    public static void  makeScreenshot(WebDriver driver) {
-        File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
-        String currentDateStr = simpleDateFormat.format(date);
-        File file1 = new  File("screenshot" + currentDateStr + ".png");
-        try {
-            FileUtils.copyFile(file, file1);
-        } catch (IOException e) {
-            log.error("Screenshot was not saved");
-        }
+    @Attachment(value = "Page screenshot", type = "image/png")
+    public static byte[]  makeScreenshot() {
+        return ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
-    public static void  makeScreenshot(WebDriver driver, String filename) {
-        File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
-        String currentDateStr = simpleDateFormat.format(date);
-        File file1 = new  File("screenshots/" + filename + currentDateStr + ".png");
-        try {
-            FileUtils.copyFile(file, file1);
-        } catch (IOException e) {
-            log.error("Screenshot was not saved");
-        }
-    }
 }

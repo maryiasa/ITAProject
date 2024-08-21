@@ -1,6 +1,8 @@
 package com.itacademy;
 
 import com.itacademy.pages.protoCommercePages.LogInPagePT;
+import com.itacademy.utils.DriverManager;
+import com.itacademy.utils.ScreenshotUtils;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,6 +30,7 @@ public class LoginTest extends  BaseTest {
             log.error("Expected text:  Check me out if you Love IceCreams!. Actual text: " + checkboxLabel);
         } else log.info(checkboxLabel);
         WebElement loveIceCreamsCheckbox = logInPagePT.getLoveIceCreamsCheckbox();
+        ScreenshotUtils.makeScreenshot();
         loveIceCreamsCheckbox.click();
         Assert.assertTrue(loveIceCreamsCheckbox.isSelected());
         Select selectGender = new Select(logInPagePT.getSelectGender());

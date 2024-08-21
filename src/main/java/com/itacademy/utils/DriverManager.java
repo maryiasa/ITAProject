@@ -29,8 +29,8 @@ public class DriverManager {
         }
         return threadLocal.get();
     }
-    public static void closeSession(){
-        driver.quit();
+    public synchronized static void closeSession(){
+        threadLocal.get().quit();
         threadLocal.set(null);
     }
 }
