@@ -1,5 +1,6 @@
 package com.itacademy.listeners;
 
+import io.qameta.allure.Allure;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,6 +30,7 @@ public class SeleniumListener implements WebDriverListener {
 
     @Override
     public void afterClick(WebElement element) {
+        Allure.step(element.toString().split("->")[1] + "is clicked");
         log.info(element.toString().split("->")[1] + "is clicked");
     }
 
