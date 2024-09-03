@@ -57,7 +57,7 @@ public class ApiReqresTest {
                 .queryParam("page", "2")
                 .when().get("api/users")
                 .then().log().status()
-                .statusCode(201)
+                .statusCode(200)
                 .assertThat().body(JsonSchemaValidator.matchesJsonSchemaInClasspath("json/getUsersJsonSchema.json"));
         log.info("getUsers END");
     }
