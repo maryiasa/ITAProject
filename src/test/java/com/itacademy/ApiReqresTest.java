@@ -32,23 +32,25 @@ public class ApiReqresTest {
         RestAssured.baseURI = "https://reqres.in";
     }
 
-    /*@Test
-    public void getUsers() {
-        log.info("getUsers BEGIN");
+    @Test
+    public void getUsers1() {
+        log.info("getUsers1 BEGIN");
         Response response = given().log().uri()
                 .queryParam("page", "2")
                 .when()
                 .get("api/users")
-                .then().log().all()
+                .then().log().status()
                 .assertThat().body(JsonSchemaValidator.matchesJsonSchemaInClasspath("json/getUsersJsonSchema.json"))
                 .extract().response();
-        assertEquals(response.getStatusCode(), 200);
+
         if (response.getStatusCode() == 200) {
             log.info("getUsers END: " + response.getStatusLine());
-        } else log.error("getUsers ERROR:\n " + response.getStatusLine() + "\n" + response.getHeaders() + "\n" + response.asString());
+        } else log.error("getUsers1 ERROR:\n " + response.getStatusLine() + "\n" + response.getHeaders() + "\n" + response.asString());
+
+        assertEquals(response.getStatusCode(), 200);
 
     }
-*/
+
     @Test
     public void getUsers() {
         log.info("getUsers BEGIN");
