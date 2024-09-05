@@ -44,8 +44,8 @@ public class ApiReqresTest {
                 .extract().response();
 
         if (response.getStatusCode() == 200) {
-            log.info("getUsers END: " + response.getStatusLine());
-        } else log.error("getUsers1 ERROR:\n " + response.getStatusLine() + "\n" + response.getHeaders() + "\n" + response.asString());
+            log.info("getUsers1 END: " + response.getStatusLine());
+        } else log.error("getUsers1 ERROR:\n" + response.getStatusLine() + "\n" + response.getHeaders() + "\n" + response.asString());
 
         assertEquals(response.getStatusCode(), 200);
 
