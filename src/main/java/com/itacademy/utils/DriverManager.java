@@ -17,7 +17,7 @@ public class DriverManager {
     }
 
     public synchronized static WebDriver getDriver() {
-        if (threadLocal.get() == (null)) {
+        if (threadLocal.get() == null) {
             driver = DriverFactory.createDriver(ConfigurationReader.getProperty(PropertiesValue.BROWSER.BROWSER));
             EventFiringDecorator<WebDriver> decorator = new EventFiringDecorator(new SeleniumListener());
             driver = decorator.decorate(driver);
@@ -25,7 +25,6 @@ public class DriverManager {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); //will wait for element
             driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60)); //will wait for page to load
             threadLocal.set(driver);
-            return threadLocal.get();
         }
         return threadLocal.get();
     }

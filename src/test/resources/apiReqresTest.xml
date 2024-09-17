@@ -3,7 +3,7 @@
 
     <test name="Api ReqresTest" >
         <classes>
-            <class name="com.itacademy.ApiReqresTest" >
+            <class name="com.itacademy.web.ApiReqresTest" >
                 <methods>
                 <exclude name="combineGetAndPutUser" />
                 </methods>

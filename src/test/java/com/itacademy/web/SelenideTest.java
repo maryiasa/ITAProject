@@ -1,4 +1,4 @@
-package com.itacademy;
+package com.itacademy.web;
 
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.logevents.SelenideLogger;

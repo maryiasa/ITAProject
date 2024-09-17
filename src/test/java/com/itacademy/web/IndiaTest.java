@@ -1,4 +1,4 @@
-package com.itacademy;
+package com.itacademy.web;
 
 import com.itacademy.utils.*;
 import lombok.extern.log4j.Log4j2;
@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 
 @Log4j2
-public class IndiaTest extends BaseTest{
+public class IndiaTest extends BaseTest {
 
     private static final Logger log = LogManager.getLogger(IndiaTest.class);
 

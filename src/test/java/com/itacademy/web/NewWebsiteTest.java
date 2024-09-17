@@ -1,4 +1,4 @@
-package com.itacademy;
+package com.itacademy.web;
 
 import com.itacademy.utils.*;
 import lombok.extern.log4j.Log4j2;
@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @Log4j2
-public class NewWebsiteTest extends BaseTest{
+public class NewWebsiteTest extends BaseTest {
 
     public static final Logger log =  LogManager.getLogger(NewWebsiteTest.class);
 

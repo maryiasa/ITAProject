@@ -1,4 +1,4 @@
-package com.itacademy;
+package com.itacademy.web;
 
 import com.itacademy.utils.DriverManager;
 import org.openqa.selenium.By;

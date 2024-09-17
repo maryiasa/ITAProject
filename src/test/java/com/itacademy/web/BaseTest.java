@@ -1,4 +1,4 @@
-package com.itacademy;
+package com.itacademy.web;
 
 import com.itacademy.listeners.TestNGListener;
 import com.itacademy.utils.DriverManager;

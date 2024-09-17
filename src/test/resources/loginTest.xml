@@ -3,7 +3,7 @@
 
     <test name="Login Test" >
         <classes>
-            <class name="com.itacademy.LoginTest" >
+            <class name="com.itacademy.web.LoginTest" >
             </class>
         </classes>
     </test>

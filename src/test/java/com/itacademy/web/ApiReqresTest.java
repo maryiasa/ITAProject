@@ -1,4 +1,4 @@
-package com.itacademy;
+package com.itacademy.web;
 
 import com.github.javafaker.Faker;
 import io.restassured.RestAssured;

@@ -1,4 +1,4 @@
-package com.itacademy;
+package com.itacademy.web;
 
 import com.itacademy.pages.facebookPages.FindYourAccount;
 import com.itacademy.pages.facebookPages.HomePage;
@@ -28,6 +28,7 @@ public class FacebookTest extends BaseTest {
     @Test
     public void negativeLogin() {
         HomePage homePage = new HomePage();
+        homePage.open();
         homePage.clickCookies();
         LogInToFacebook logIn = homePage.clickLogInBtn();
         Assert.assertEquals(logIn.getPageName(), "Log in to Facebook");
@@ -37,6 +38,7 @@ public class FacebookTest extends BaseTest {
     @Test
     public void forgottenPwd() {
         HomePage homePage = new HomePage();
+        homePage.open();
         homePage.clickCookies();
         FindYourAccount findYourAccount = homePage.clickForgottenPwdBtn();
         Assert.assertEquals(findYourAccount.getPageName(), "Find Your Account");

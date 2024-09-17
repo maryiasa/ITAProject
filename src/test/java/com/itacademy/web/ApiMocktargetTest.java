@@ -1,4 +1,4 @@
-package com.itacademy;
+package com.itacademy.web;
 
 import io.restassured.RestAssured;
 import io.restassured.config.LogConfig;

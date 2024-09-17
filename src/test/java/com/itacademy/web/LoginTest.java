@@ -1,7 +1,6 @@
-package com.itacademy;
+package com.itacademy.web;
 
 import com.itacademy.pages.protoCommercePages.LogInPagePT;
-import com.itacademy.utils.DriverManager;
 import com.itacademy.utils.ScreenshotUtils;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
@@ -14,7 +13,7 @@ import org.testng.annotations.Test;
 import java.util.Objects;
 
 @Log4j2
-public class LoginTest extends  BaseTest {
+public class LoginTest extends BaseTest {
 
     private static final Logger log = LogManager.getLogger(LoginTest.class);
 
